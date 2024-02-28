@@ -8,7 +8,7 @@ An additional case was made to display a decimal point to separate minutes and s
 
 ![photo1709000259](https://github.com/stephlovesfries/T02-Stopwatch-on-Basys3/assets/115708694/24a6e10a-5c3f-4e52-a898-f09cf1ca5943)
 
-Once the second decade counter reaches 6, it resets to 0, the dp register is set to 1 and the minute counter is advanced by 1.  A video was submitted separately to show this implementation. 
+Once the second decade counter reaches 6, it resets to 0, the dp register is set to 1 and the minute counter is advanced by 1, this sets the dp_r flag to 1, causing the 7 segment display to switch to the case with the decimal point for the 2nd digit. This results in a decimal point appearing between the minutes and seconds digits.  A video was submitted separately to show this implementation.  
 
 ![photo1709000302](https://github.com/stephlovesfries/T02-Stopwatch-on-Basys3/assets/115708694/78e1d045-fd9a-4de5-a605-ab97cf9eec66)
 
@@ -23,7 +23,7 @@ The start button was declared in the stopwatch module. All three functions: star
 
 ![photo1708992302 (1)](https://github.com/stephlovesfries/T02-Stopwatch-on-Basys3/assets/115708694/ebf827b1-a648-467f-a3c3-e917b628e91c)
 
-The running function stops the counter by interrupting the clock when the running state is true. When the start button is pressed, the running state is toggled between 1 and 0 to pause and resume the clock. By setting the running function to zero when reset state is true, the value of the clock stays at 0 when the reset button is pressed and the counter only resumes counting once the start button is pressed. 
+The running register stops the counter by interrupting the 1Hz clock logic when the running state is true. The running register is 0 by default upon reset. When the start button is pressed, the running state is toggled between 0 and 1 to enable the 1Hz clock, allowing the timer to count up, pressing the button again toggles the running state back to 0, pausing the count up. By setting the running function to zero when reset state is true, the 1Hz clock remains disabled after reset and is only enabled again after pressing the start button to start the count up timer. 
 
 ![photo1708992302 (2)](https://github.com/stephlovesfries/T02-Stopwatch-on-Basys3/assets/115708694/5f8f3ee4-0f80-44dd-a736-33166cf1a9b9)
 
